@@ -11,10 +11,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass'
 gem 'authlogic'
+gem 'bcrypt'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   gem 'byebug'
+  gem 'factory_girl_rails'
   gem 'quiet_assets'
   gem 'rspec-rails', '~> 3.5'
 end
