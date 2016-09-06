@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  get 'home/result', to: 'home#result'
+  # UserSessions
+  resources :user_sessions, only: [:new, :create, :destroy]
 end

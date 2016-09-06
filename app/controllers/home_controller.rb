@@ -1,8 +1,6 @@
 class HomeController < ApplicationController
-  def index
-  end
+  before_action :require_login
 
-  def result
-    render json: params
-  end
+  # GET /home/index
+  def index; end
 end
