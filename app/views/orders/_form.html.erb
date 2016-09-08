@@ -1,0 +1,50 @@
+<%= form_for @order do |f| %>
+  <fieldset>
+    <legend>Informasi Order</legend>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :order_date, 'Tanggal Order' %>
+          <%= f.text_field :order_date, class: 'form-control datepickered' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :shipment_date, 'Tanggal Pengiriman' %>
+          <%= f.text_field :shipment_date, class: 'form-control datepickered' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :agent, 'Nama Agen' %>
+          <%= f.collection_select :agent_id, Agent.order(:id), :id, :name_with_id, { prompt: true }, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Sales Order</legend>
+    <div id="order-items">
+      <%= f.fields_for :order_items do |order_item| %>
+        <%= render 'order_item_fields', f: order_item %>
+      <% end %>
+      <div class="links">
+        <div class="row">
+          <div class="col-md-2">
+            <%= link_to_add_association 'Tambah Barang', f, :order_items, class: 'btn btn-info btn-block' %>
+          </div>
+          <div class="col-md-2">
+            <%= f.submit 'Simpan', class: 'btn btn-success btn-block'%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

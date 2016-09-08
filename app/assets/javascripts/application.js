@@ -12,6 +12,23 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker
+//= require cocoon
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+  $('.datepickered').datepicker();
+
+  $('form').on('cocoon:after-insert', function(e, added_thing) {
+    var selection = added_thing.find('select');
+    var disabledField = added_thing.find('input:disabled');
+
+    selection.on('change', function(e) {
+      var productInventory = ($('#product-' + selection.val()).data('quantity'));
+      $.getJSON('/products/' + selection.val() + '.json', function(json) {
+        disabledField.val(json.quantity);
+      });
+    });
+  });
+});
