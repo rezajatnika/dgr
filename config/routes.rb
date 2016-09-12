@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :inventories
     resources :products
     resources :users
+    resources :deposits
 
     root to: "divisions#index"
   end
@@ -21,4 +22,5 @@ Rails.application.routes.draw do
 
   # Products
   resources :products
+  resources :shipments
 end

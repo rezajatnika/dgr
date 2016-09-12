@@ -1,31 +1,42 @@
-<div class="nested-fields">
-  <div class="col-md-4">
-    <div class="field form-group">
-      <%= f.label :product_id, 'Jenis Barang' %>
-      <%= f.collection_select :product_id, Product.order(:name), :id, :name, { prompt: true }, class: 'form-control' %>
+<div class="row">
+  <div class="nested-fields">
+    <div class="col-md-4">
+      <div class="field form-group">
+        <%= f.label :product_id, 'Jenis Barang' %>
+        <%= f.collection_select :product_id, @presenter.product_select, :id, :name, { prompt: true }, class: 'form-control' %>
+      </div>
     </div>
-  </div>
 
-  <div class="col-md-3">
-    <div class="field form-group">
-      <%= f.label :quantity, 'Order Kuantitas' %>
-      <%= f.number_field :quantity, class: 'form-control' %>
+    <div class="col-md-2">
+      <div class="field form-group">
+        <%= f.label :quantity, 'Order Kuantitas' %>
+        <%= f.number_field :quantity, class: 'form-control' %>
+      </div>
     </div>
-  </div>
 
-  <div class="col-md-3">
-    <div class="field form-group">
-      <%= f.label :inventory, 'Kuantitas Gudang' %>
-      <%= f.number_field :inventory, class: 'form-control', disabled: true, value: 0 %>
+    <div class="col-md-2">
+      <div class="field form-group">
+        <%= f.label :stock, 'Kuantitas Gudang' %>
+        <%= f.number_field :quantity, class: 'form-control', disabled: true, value: f.object.product_quantity %>
+      </div>
     </div>
-  </div>
 
-  <div class="col-md-2">
-    <div class="field form-group">
-      <%= f.label :remove, 'Hapus' %><br>
-      <%= link_to_remove_association f, class: 'btn btn-danger' do %>
-        <i class="fa fa-times" aria-hidden="true"></i>
-      <% end %>
+    <% unless action_name == 'new' %>
+      <div class="col-md-2">
+        <div class="field form-group">
+          <%= f.label :stock, 'Deposit Agen' %>
+          <%= f.number_field :deposit, class: 'form-control', disabled: true, value: f.object.agent_deposit_quantity(f.object.order.agent_id) %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="col-md-2">
+      <div class="field form-group">
+        <%= f.label :remove, 'Hapus' %><br>
+        <%= link_to_remove_association f, class: 'btn btn-danger' do %>
+          <i class="fa fa-times" aria-hidden="true"></i>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

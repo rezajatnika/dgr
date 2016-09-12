@@ -4,11 +4,8 @@ class Product < ActiveRecord::Base
   # Asso
   has_one :inventory, dependent: :destroy
   has_many :order_items
+  has_many :deposits
 
-  # Validations
-  validates :name,
-    :code,
-    :unit,
-    :price,
-    presence: true
+  # Validation
+  validates :name, :code, :unit, :price, presence: true
 end

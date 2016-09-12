@@ -8,11 +8,13 @@ gem 'bcrypt'
 gem 'bootstrap-sass'
 gem 'bourbon', '~> 4.2.7'
 gem 'cocoon'
-gem 'coffee-rails', '~> 4.1.0'
 gem 'font-awesome-sass'
+gem 'goldiloader'
 gem 'jquery-rails'
 gem 'pg', '~> 0.15'
+gem 'puma'
 gem 'sass-rails', '~> 5.0'
+gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
@@ -25,7 +27,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'colorize'
+  gem 'bullet'
   gem 'spring'
   gem 'web-console', '~> 2.0'
 end

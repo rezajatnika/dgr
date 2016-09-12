@@ -45,7 +45,7 @@ class DivisionDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how divisions are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(division)
-  #   "Division ##{division.id}"
-  # end
+  def display_resource(division)
+    division.name
+  end
 end

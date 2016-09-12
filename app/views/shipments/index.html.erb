@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="page-header">Rencana Pengiriman Barang</h1>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= form_tag 'orders', method: :get do %>
+          <fieldset>
+            <legend>Pilih Sales Order</legend>
+            <div class="form-horizontal">
+              <div class="form-group">
+                <%= label_tag 'order_id', 'No. Order', class: 'col-md-2 control-label' %>
+                <div class="col-md-4">
+                  <%= select_tag 'order_id', options_for_select(@presenter.order_select, params[:id]), include_blank: 'Please select', class: 'form-control', onchange: 'changeShipment()' %>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

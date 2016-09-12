@@ -10,6 +10,7 @@ class InventoryDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     product_id: Field::Number,
+    product: Field::BelongsTo,
     quantity: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -22,7 +23,7 @@ class InventoryDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :id,
-    :product_id,
+    :product,
     :quantity,
     :created_at,
   ].freeze
@@ -31,7 +32,7 @@ class InventoryDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :id,
-    :product_id,
+    :product,
     :quantity,
     :created_at,
     :updated_at,

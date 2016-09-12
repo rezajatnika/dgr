@@ -3,7 +3,29 @@
 @import 'bootstrap-datepicker3';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+@import 'material/flat-ui';
+
+body#session {
+  margin-top: 12%;
+  background: #f7f7f7;
+}
+
+body {
+  background: #f7f7f7;
+}
+
+.navbar {
+  border-radius: 0px;
+}
+
+form#new_user_session {
+  margin-top: 1em;
+}
 
 .huge {
-  font-size: 40px;
+  font-size: 28px;
+}
+
+.form-horizontal .control-label {
+  text-align: left;
 }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908071258) do
+ActiveRecord::Schema.define(version: 20160912075012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20160908071258) do
     t.string   "address"
     t.string   "phone"
     t.string   "pic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "deposits", force: :cascade do |t|
+    t.integer  "agent_id"
+    t.integer  "product_id"
+    t.integer  "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,8 +61,9 @@ ActiveRecord::Schema.define(version: 20160908071258) do
     t.integer  "agent_id"
     t.date     "order_date"
     t.date     "shipment_date"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "status",        default: 0
   end
 
   add_index "orders", ["agent_id"], name: "index_orders_on_agent_id", using: :btree
