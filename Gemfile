@@ -21,9 +21,9 @@ group :development, :test do
   gem 'byebug'
   gem 'capybara'
   gem 'factory_girl_rails'
-  gem 'nyan-cat-formatter'
   gem 'quiet_assets'
   gem 'rspec-rails', '~> 3.5'
+  gem 'selenium-webdriver'
 end
 
 group :development do

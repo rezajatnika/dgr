@@ -1,9 +1,10 @@
+<% provide(:title, 'Edit Order') %>
 <div class="row">
   <div class="col-md-12">
     <h1 class="page-header">Sales Order #<%= @order.id %></h1>
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= render 'form_select' %>
+        <%= render partial: 'form_select', locals: { res: @presenter, onchange: 'changeOrder()' } %>
         <%= render 'form' %>
       </div>
     </div>

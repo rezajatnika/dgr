@@ -1,0 +1,31 @@
+<fieldset>
+  <legend>Informasi Order</legend>
+  <div class="form-horizontal">
+    <div class="form-group">
+      <%= f.label :order_date, 'Tanggal Order', class: 'col-md-2 control-label' %>
+      <div class="col-md-4">
+        <div class="input-group">
+          <%= f.text_field :order_date, class: 'form-control datepickered' %>
+          <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :shipment_date, 'Tanggal Pengiriman', class: 'col-md-2 control-label' %>
+      <div class="col-md-4">
+        <div class="input-group">
+          <%= f.text_field :shipment_date, class: 'form-control datepickered' %>
+          <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :agent_id, 'Nama Agen', class: 'col-md-2 control-label' %>
+      <div class="col-md-4">
+        <%= f.collection_select :agent_id, @presenter.agents, :id, :name_with_id, { prompt: true }, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+</fieldset>

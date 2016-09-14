@@ -8,13 +8,17 @@
         <%= render 'order_item_fields', f: order_item %>
       <% end %>
     </div>
-    <div class="row">
+    <div class="row control-button">
       <div class="col-md-2">
         <%= link_to_add_association 'Tambah Barang', f, :order_items, class: 'btn btn-info btn-block' %>
       </div>
       <div class="col-md-2">
         <%= f.submit 'Simpan', class: 'btn btn-success btn-block'%>
       </div>
+      <div class="col-md-2">
+        <%= link_to 'Approve', approve_shipment_path(@order), class: 'btn btn-success btn-block', method: :put %>
+      </div>
     </div>
   </fieldset>
 <% end %>
+

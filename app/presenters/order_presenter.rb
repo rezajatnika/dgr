@@ -8,7 +8,9 @@ class OrderPresenter
   end
 
   def order_select
-    Order.order(:shipment_date).collect { |ord| [ ord.id_with_shipment_date, ord.id ] }
+    Order.placed.order(:shipment_date).collect do |ord|
+      [ ord.id_with_shipment_date, ord.id ]
+    end
   end
 
   def product_select

@@ -18,10 +18,20 @@
 //= require turbolinks
 //= require_tree .
 
+document.addEventListener('page:restore', function() {
+  app.init();
+});
+
 document.addEventListener('turbolinks:load', function() {
   $('.datepickered').datepicker({
     format: 'yyyy-mm-dd'
   });
+
+  $('.datepickered').on('changeDate', function(e) {
+    $(this).datepicker('hide');
+  });
+
+  $('.alert').fadeOut(3000);
 
   var agentId = $('#order_agent_id').val();
   $('.order_form').on('cocoon:after-insert', function(e, added_thing) {
@@ -51,6 +61,15 @@ function changeOrder() {
     Turbolinks.visit('/orders/' + order.val() + '/edit');
   } else {
     Turbolinks.visit('/orders');
+  }
+}
+
+function changeShipment() {
+  var order = $('#order_id');
+  if (order.val()) {
+    Turbolinks.visit('/shipments/' + order.val() + '/edit');
+  } else {
+    Turbolinks.visit('/shipments');
   }
 }
 

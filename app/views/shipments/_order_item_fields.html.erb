@@ -7,28 +7,26 @@
       </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="field form-group">
         <%= f.label :quantity, 'Order Kuantitas' %>
         <%= f.number_field :quantity, class: 'form-control' %>
       </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="field form-group">
         <%= f.label :stock, 'Kuantitas Gudang' %>
         <%= f.number_field :quantity, class: 'form-control', disabled: true, value: f.object.product_quantity %>
       </div>
     </div>
 
-    <%# <% unless action_name == 'new' || 'create' %1> %>
-    <%#   <div class="col-md-2"> %>
-    <%#     <div class="field form-group"> %>
-    <%#       <%= f.label :stock, 'Deposit Agen' %1> %>
-    <%#       <%= f.number_field :deposit, class: 'form-control', disabled: true, value: f.object.agent_deposit_quantity(f.object.order.agent_id) %1> %>
-    <%#     </div> %>
-    <%#   </div> %>
-    <%# <% end %1> %>
+      <div class="col-md-2">
+        <div class="field form-group">
+          <%= f.label :stock, 'Deposit Agen' %>
+          <%= f.number_field :deposit, class: 'form-control', disabled: true, value: f.object.agent_deposit_quantity(f.object.order.agent_id) %>
+        </div>
+      </div>
 
     <div class="col-md-2">
       <div class="field form-group">
@@ -40,3 +38,4 @@
     </div>
   </div>
 </div>
+

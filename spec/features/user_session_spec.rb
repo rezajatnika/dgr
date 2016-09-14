@@ -5,19 +5,23 @@ RSpec.describe 'Login feature', type: :feature do
     FactoryGirl.create(:user)
   end
 
+  after :each do
+    User.destroy_all
+  end
+
   scenario 'logs user in with correct email and password' do
-    visit '/user_sessions/new'
-    fill_in 'Email', with: 'stock@dgr.com'
+    visit '/user_session/new'
+    fill_in 'Email', with: 'mukidi@dgr.com'
     fill_in 'Password', with: 'asdqwe123'
-    click_button 'Login'
-    expect(page).to have_content 'Hello, world!'
+    click_button 'Log In'
+    expect(page).to have_content 'Dashboard'
   end
 
   scenario 'logs user in with incorrect email and password' do
-    visit '/user_sessions/new'
+    visit '/user_session/new'
     fill_in 'Email', with: 'stock@dgr.com'
     fill_in 'Password', with: 'false'
-    click_button 'Login'
-    expect(page).to have_content 'Please Login'
+    click_button 'Log In'
+    expect(page).to have_content 'Invalid email or password.'
   end
 end

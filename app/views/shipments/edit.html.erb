@@ -1,10 +1,11 @@
-<% provide(:title, 'Shipment') %>
+<% provide(:title, 'New Shipment') %>
 <div class="row">
   <div class="col-md-12">
-    <h1 class="page-header">Rencana Pengiriman Barang</h1>
+    <h1 class="page-header">Rencana Pengiriman Order #<%= @order.id %></h1>
     <div class="panel panel-default">
       <div class="panel-body">
         <%= render partial: 'form_select', locals: { res: @presenter, onchange: 'changeShipment()' } %>
+        <%= render 'form' %>
       </div>
     </div>
   </div>
