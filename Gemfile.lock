@@ -47,6 +47,9 @@ GEM
       rails (~> 4.2)
       sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
+    annotate (2.7.1)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 12.0)
     arel (6.0.3)
     authlogic (3.4.6)
       activerecord (>= 3.2)
@@ -79,6 +82,7 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     cocoon (1.2.8)
     concurrent-ruby (1.0.2)
+    database_cleaner (1.5.3)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
     debug_inspector (0.0.2)
@@ -233,6 +237,7 @@ PLATFORMS
 
 DEPENDENCIES
   administrate
+  annotate
   authlogic
   bcrypt
   bootstrap-sass
@@ -241,6 +246,7 @@ DEPENDENCIES
   byebug
   capybara
   cocoon
+  database_cleaner
   factory_girl_rails
   font-awesome-sass
   goldiloader

@@ -27,11 +27,10 @@ class OrdersController < ApplicationController
   # PATCH /orders/1
   def update
     @order = Order.find(params[:id])
-    if @order.update(order_params)
-      flash[:success] = "Sales ##{@order.id} telah berhasil diperbarui."
-      redirect_to edit_order_path(@order)
+    if params[:commit] == 'Approve'
+      approve_order_for_shipment(@order)
     else
-      render :edit
+      update_order(@order)
     end
   end
 
@@ -44,6 +43,25 @@ class OrdersController < ApplicationController
       :agent_id,
       order_items_attributes: [:id, :product_id, :quantity, :_destroy]
     )
+  end
+
+  def approve_order_for_shipment(order)
+    if order.update(order_params)
+      order.update_attribute(:status, 'approved')
+      order.create_shipment
+      redirect_to shipments_path, success: 'Rencana pengiriman berhasil dibuat'
+    else
+      render :edit
+    end
+  end
+
+  def update_order(order)
+    if order.update(order_params)
+      flash[:success] = "Sales ##{order.id} telah berhasil diperbarui."
+      redirect_to edit_order_path(order)
+    else
+      render :edit
+    end
   end
 
   def set_order_presenter

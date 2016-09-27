@@ -1,0 +1,41 @@
+<% provide(:title, 'Barang Masuk') %>
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="page-header">Barang Masuk</h1>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= form_tag 'scan', class: 'form-horizontal' do %>
+          <fieldset>
+            <legend>Scan Barang</legend>
+            <div class="form-group">
+              <%= label_tag :barcode, 'Barcode Barang', class: 'col-md-2 control-label' %>
+              <div class="col-md-4">
+                <%= text_field_tag :barcode, nil, class: 'form-control', autocomplete: 'off', autofocus: true %>
+              </div>
+              <div class="col-md-2">
+                <%= submit_tag 'Submit', class: 'btn btn-info' %>
+              </div>
+            </div>
+          </fieldset>
+        <% end %>
+        <%= form_for @incoming_good do |f| %>
+          <fieldset>
+            <legend>Informasi Transaksi</legend>
+            <div class="form-horizontal">
+              <div class="form-group">
+                <%= f.label :created_at, 'Tanggal Transaksi', class: 'col-md-2 control-label' %>
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <%= f.text_field :created_at, class: 'form-control datepickered' %>
+                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

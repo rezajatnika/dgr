@@ -18,10 +18,6 @@
 //= require turbolinks
 //= require_tree .
 
-document.addEventListener('page:restore', function() {
-  app.init();
-});
-
 document.addEventListener('turbolinks:load', function() {
   $('.datepickered').datepicker({
     format: 'yyyy-mm-dd'
@@ -33,13 +29,13 @@ document.addEventListener('turbolinks:load', function() {
 
   $('.alert').fadeOut(3000);
 
-  var agentId = $('#order_agent_id').val();
-  $('.order_form').on('cocoon:after-insert', function(e, added_thing) {
-    var selection = added_thing.find('select');
-    var disabledField = added_thing.find('input:disabled');
+  const agentId = $('#order_agent_id').val();
+  $('.order_form').on('cocoon:after-insert', function(e, insertedItem) {
+    const $selectProduct = insertedItem.find('select');
+    const $quantityInput = insertedItem.find('input:disabled');
 
-    selection.on('change', function(e) {
-      changeQuantity(this, disabledField[0], disabledField[1], agentId);
+    $selectProduct.on('change', function(e) {
+      changeQuantity(this, $quantityInput[0], $quantityInput[1], agentId);
     });
   });
 
@@ -47,41 +43,35 @@ document.addEventListener('turbolinks:load', function() {
     data('association-insertion-method', 'append').
     data('association-insertion-node', '#order-items');
 
-  var selectsInNested = $('.nested-fields').find('select');
-  selectsInNested.on('change', function(e) {
-    var disabledInput = $('#' + this.id).parentsUntil('.row').
+  const $selectProduct = $('.nested-fields').find('select');
+  $selectProduct.on('change', function(e) {
+    const $quantityInput = $('#' + this.id).
+      parentsUntil('.row').
       find('input:disabled');
-    changeQuantity(this, disabledInput[0], disabledInput[1], agentId);
+    changeQuantity(this, $quantityInput[0], $quantityInput[1], agentId);
   });
 });
 
 function changeOrder() {
-  var order = $('#order_id');
-  if (order.val()) {
-    Turbolinks.visit('/orders/' + order.val() + '/edit');
+  const $orderId = $('#order_id');
+  const controller = $('#order_select').data('controller');
+
+  if ($orderId.val()) {
+    Turbolinks.visit('/' + controller +'/' + $orderId.val() + '/edit');
   } else {
-    Turbolinks.visit('/orders');
+    Turbolinks.visit('/' + controller);
   }
 }
 
-function changeShipment() {
-  var order = $('#order_id');
-  if (order.val()) {
-    Turbolinks.visit('/shipments/' + order.val() + '/edit');
-  } else {
-    Turbolinks.visit('/shipments');
-  }
-}
-
-function changeQuantity(select, input, inputTwo, agentId) {
+function changeQuantity(select, inputOne, inputTwo, agentId) {
   $.getJSON('/products/' + select.value + '.json', function(json) {
-    var depo = $.grep(json.deposits, function(e) {
+    const agentDeposit = $.grep(json.deposits, function(e) {
       return e.agent_id == agentId;
     });
 
-    input.value = json.inventory.quantity;
-    if (depo[0]) {
-      inputTwo.value = depo[0].quantity;
+    inputOne.value = json.inventory.quantity;
+    if (agentDeposit[0]) {
+      inputTwo.value = agentDeposit[0].quantity;
     }
   });
 }

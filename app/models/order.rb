@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id            :integer          not null, primary key
+#  agent_id      :integer
+#  order_date    :date
+#  shipment_date :date
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  status        :integer          default(0)
+#
+
 class Order < ActiveRecord::Base
   # Scopes
   scope :placed, -> { where(status: 'placed') }
@@ -8,6 +21,7 @@ class Order < ActiveRecord::Base
 
   # Association
   belongs_to :agent
+  has_one :shipment, dependent: :destroy
   has_many :order_items, dependent: :destroy
   accepts_nested_attributes_for :order_items, allow_destroy: true,
     reject_if: :all_blank

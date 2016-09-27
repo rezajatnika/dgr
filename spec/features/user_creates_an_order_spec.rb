@@ -1,14 +1,10 @@
 require 'rails_helper'
 
-RSpec.feature 'Create orders', type: :feature do
+RSpec.feature 'User creates an order', type: :feature do
   before :each do
     @agent = FactoryGirl.create(:agent)
     @product = FactoryGirl.create(:product)
     @user = FactoryGirl.create(:user)
-  end
-
-  after :each do
-    [User, Product, Agent].each { |res| res.destroy_all }
   end
 
   scenario 'creates new order with valid data' do

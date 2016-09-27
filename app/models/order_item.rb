@@ -1,6 +1,18 @@
+# == Schema Information
+#
+# Table name: order_items
+#
+#  id         :integer          not null, primary key
+#  order_id   :integer
+#  product_id :integer
+#  quantity   :integer          default(0)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class OrderItem < ActiveRecord::Base
   # Asso
-  belongs_to :order
+  belongs_to :order, inverse_of: :order_items
   belongs_to :product
 
   # Validation

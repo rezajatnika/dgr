@@ -1,12 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'Login feature', type: :feature do
+RSpec.describe 'User logs in', type: :feature do
   before :each do
     FactoryGirl.create(:user)
-  end
-
-  after :each do
-    User.destroy_all
   end
 
   scenario 'logs user in with correct email and password' do

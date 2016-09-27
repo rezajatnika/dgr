@@ -20,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'byebug'
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'quiet_assets'
   gem 'rspec-rails', '~> 3.5'
@@ -27,6 +28,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
   gem 'bullet'
   gem 'spring'
   gem 'web-console', '~> 2.0'
@@ -37,4 +39,3 @@ group :production do
 end
 
 ruby '2.2.4'
-

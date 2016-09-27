@@ -6,8 +6,9 @@ Rails.application.routes.draw do
     resources :products
     resources :users
     resources :deposits
+    resources :locations
 
-    root to: 'divisions#index'
+    root to: 'users#index'
   end
 
   root 'home#index'
@@ -22,9 +23,18 @@ Rails.application.routes.draw do
 
   # Products
   resources :products
-  resources :shipments do
-    member do
-      put :approve
+
+  # Shipments
+  resources :shipments
+
+  # Warehouses
+  scope :warehouse do
+    resource :incoming_goods do
+      member do
+        post :scan
+      end
     end
+
+    resource :outgoing_goods
   end
 end

@@ -11,6 +11,7 @@ class InventoryDashboard < Administrate::BaseDashboard
     id: Field::Number,
     product_id: Field::Number,
     product: Field::BelongsTo,
+    location: Field::BelongsTo,
     quantity: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -25,7 +26,7 @@ class InventoryDashboard < Administrate::BaseDashboard
     :id,
     :product,
     :quantity,
-    :created_at,
+    :location,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -44,6 +45,7 @@ class InventoryDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :product_id,
     :quantity,
+    :location,
   ].freeze
 
   # Overwrite this method to customize how inventories are displayed

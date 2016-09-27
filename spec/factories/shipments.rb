@@ -1,15 +1,16 @@
 # == Schema Information
 #
-# Table name: divisions
+# Table name: shipments
 #
 #  id         :integer          not null, primary key
-#  name       :string
+#  order_id   :integer
+#  status     :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-require 'rails_helper'
-
-RSpec.describe Division, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+FactoryGirl.define do
+  factory :shipment do
+    # TBD
+  end
 end
